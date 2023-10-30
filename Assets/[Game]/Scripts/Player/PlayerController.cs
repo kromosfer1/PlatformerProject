@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace TarodevController
+namespace MovementController
 {
     /// <summary>
     /// Hey!

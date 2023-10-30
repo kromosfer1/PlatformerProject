@@ -767,6 +767,7 @@ GameObject:
   - component: {fileID: 1550095937}
   - component: {fileID: 1550095936}
   - component: {fileID: 1550095939}
+  - component: {fileID: 1550095942}
   - component: {fileID: 1550095934}
   - component: {fileID: 1550095940}
   - component: {fileID: 1550095941}
@@ -793,7 +794,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 044f28ad2066041a8955bda22bf6e585, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -940,6 +941,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1550095942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550095933}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7779789d4c3a48c085b8eb2b939718a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 1550095941}
+  _sprite: {fileID: 1550095936}
+  _maxTilt: -5
+  _tiltSpeed: 20
 --- !u!1 &1655365269
 GameObject:
   m_ObjectHideFlags: 0
