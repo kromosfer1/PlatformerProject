@@ -211,6 +211,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &75222548
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1550095937}
+    m_Modifications:
+    - target: {fileID: 5910223786713355445, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910223786713355445, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910223786713355445, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910223786713355445, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910223786713355445, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910223786713355445, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910223786713355445, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910223786713355445, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910223786713355445, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910223786713355445, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6391632940763862257, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
+      propertyPath: stopAction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804571506222807925, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
+      propertyPath: m_Name
+      value: MoveParticles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,6 +444,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &667027973 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5910223786713355445, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
+  m_PrefabInstance: {fileID: 75222548}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &667027975 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6391632940763862257, guid: fb38e068c446a41a88c8a7ae722bd75c, type: 3}
+  m_PrefabInstance: {fileID: 75222548}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &871705358
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,7 +940,8 @@ Transform:
   m_LocalPosition: {x: 2.87, y: -0.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 667027973}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1550095939
@@ -948,7 +1020,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550095933}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7779789d4c3a48c085b8eb2b939718a, type: 3}
   m_Name: 
@@ -957,6 +1029,7 @@ MonoBehaviour:
   _sprite: {fileID: 1550095936}
   _maxTilt: -5
   _tiltSpeed: 20
+  _moveParticles: {fileID: 667027975}
 --- !u!1 &1655365269
 GameObject:
   m_ObjectHideFlags: 0

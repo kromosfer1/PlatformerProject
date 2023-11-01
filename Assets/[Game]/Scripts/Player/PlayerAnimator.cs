@@ -16,9 +16,10 @@ namespace MovementController
         [SerializeField] private float _maxTilt = 5;
         [SerializeField] private float _tiltSpeed = 20;
 
-        //[Header("Particles")][SerializeField] private ParticleSystem _jumpParticles;
+        [Header("Particles")]
+        //[SerializeField] private ParticleSystem _jumpParticles;
         //[SerializeField] private ParticleSystem _launchParticles;
-        //[SerializeField] private ParticleSystem _moveParticles;
+        [SerializeField] private ParticleSystem _moveParticles;
         //[SerializeField] private ParticleSystem _landParticles;
 
         //[Header("Audio Clips")]
@@ -40,7 +41,7 @@ namespace MovementController
             _player.Jumped += OnJumped;
             _player.GroundedChanged += OnGroundedChanged;
 
-            //_moveParticles.Play();
+            _moveParticles.Play();
         }
 
         private void OnDisable()
@@ -48,7 +49,7 @@ namespace MovementController
             _player.Jumped -= OnJumped;
             _player.GroundedChanged -= OnGroundedChanged;
 
-            //_moveParticles.Stop();
+            _moveParticles.Stop();
         }
 
         private void Update()
@@ -58,6 +59,8 @@ namespace MovementController
             HandleSpriteFlip();
 
             HandleCharacterTilt();
+
+            _anim.SetFloat("Speed", Mathf.Abs(_player.FrameInput.x));
         }
 
         private void HandleSpriteFlip()
@@ -73,9 +76,7 @@ namespace MovementController
 
         private void OnJumped()
         {
-            _anim.SetTrigger(JumpKey);
-            _anim.ResetTrigger(GroundedKey);
-
+            _anim.SetBool("IsJumping", true);
 
             //if (_grounded) // Avoid coyote
             //{
@@ -91,19 +92,21 @@ namespace MovementController
 
             if (grounded)
             {
+                _anim.SetBool("IsJumping", false);
+
                 //SetColor(_landParticles);
 
-                //_anim.SetTrigger(GroundedKey);
+                _anim.SetTrigger(GroundedKey);
                 //_source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
-                //_moveParticles.Play();
+                _moveParticles.Play();
 
                 //_landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, 40, impact);
                 //_landParticles.Play();
             }
-            //else
-            //{
-            //    _moveParticles.Stop();
-            //}
+            else
+            {
+                _moveParticles.Stop();
+            }
         }
 
         private static readonly int GroundedKey = Animator.StringToHash("Grounded");
