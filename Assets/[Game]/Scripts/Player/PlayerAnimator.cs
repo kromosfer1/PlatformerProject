@@ -29,7 +29,6 @@ namespace MovementController
         //private AudioSource _source;
         private IPlayerController _player;
         private bool _grounded;
-        private ParticleSystem.MinMaxGradient _currentGradient;
 
         private void Awake()
         {
@@ -110,7 +109,7 @@ namespace MovementController
         }
 
         private static readonly int GroundedKey = Animator.StringToHash("Grounded");
-        private static readonly int IdleSpeedKey = Animator.StringToHash("IdleSpeed");
-        private static readonly int JumpKey = Animator.StringToHash("Jump");
+        //private static readonly int IdleSpeedKey = Animator.StringToHash("IdleSpeed");
+        //private static readonly int JumpKey = Animator.StringToHash("Jump");
     }
 }
