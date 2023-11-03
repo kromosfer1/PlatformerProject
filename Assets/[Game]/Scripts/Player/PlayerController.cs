@@ -44,13 +44,14 @@ namespace MovementController
             GatherInput();
         }
 
-        private void GatherInput()
+        public void GatherInput()
         {
             _frameInput = new FrameInput
             {
-                JumpDown = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.C),
-                JumpHeld = Input.GetButton("Jump") || Input.GetKey(KeyCode.C),
-                Move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"))
+                JumpDown = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W),
+                JumpHeld = Input.GetButton("Jump") || Input.GetKey(KeyCode.W),
+                Move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")),
+                hopDownInput = Input.GetKeyDown(KeyCode.S)
             };
 
             if (_stats.SnapInput)
@@ -199,6 +200,7 @@ namespace MovementController
     {
         public bool JumpDown;
         public bool JumpHeld;
+        public bool hopDownInput;
         public Vector2 Move;
     }
     
