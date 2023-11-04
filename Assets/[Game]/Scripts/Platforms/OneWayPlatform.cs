@@ -1,24 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MovementController;
 
 public class OneWayPlatform : MonoBehaviour
 {
-    [SerializeField] private float _dropDelay;
-    private GameObject currentOneWayPlatform;
-    private FrameInput _frameInput;
-    private bool _hopDownButton => _frameInput.hopDownInput;
-
-    private void Start()
-    {
-        currentOneWayPlatform = gameObject;
-    }
+    [SerializeField] private CapsuleCollider2D _playerCollider;
+    [SerializeField] private float _collisionIgnoreTime;
+    private GameObject _currentOneWayPlatform;
 
     private void Update()
     {
-        if (_hopDownButton && currentOneWayPlatform != null)
-            StartCoroutine(DisableCollision(gameObject.GetComponent<CapsuleCollider2D>()));
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            if(_currentOneWayPlatform != null)
+            StartCoroutine(DisableCollision());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -26,7 +20,7 @@ public class OneWayPlatform : MonoBehaviour
         IPlayerController player = collision.gameObject.GetComponent<IPlayerController>();
 
         if (player != null)
-            currentOneWayPlatform = collision.gameObject;
+            _currentOneWayPlatform = gameObject;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -34,19 +28,15 @@ public class OneWayPlatform : MonoBehaviour
         IPlayerController player = collision.gameObject.GetComponent<IPlayerController>();
 
         if (player != null)
-            currentOneWayPlatform = null;
+            _currentOneWayPlatform = null;
     }
 
-    private IEnumerator DisableCollision(CapsuleCollider2D playerCollider)
+    private IEnumerator DisableCollision()
     {
-        IPlayerController player = playerCollider.gameObject.GetComponent<IPlayerController>();
-        if (player != null)
-            gameObject.GetComponent<CapsuleCollider2D>();
+        BoxCollider2D platformCollider = _currentOneWayPlatform.GetComponent<BoxCollider2D>();
 
-        BoxCollider2D platformCollider = currentOneWayPlatform.GetComponent<BoxCollider2D>();
-
-        Physics2D.IgnoreCollision(playerCollider, platformCollider);
-        yield return new WaitForSeconds(_dropDelay);
-        Physics2D.IgnoreCollision(playerCollider, platformCollider);
+        Physics2D.IgnoreCollision(_playerCollider, platformCollider);
+        yield return new WaitForSeconds(_collisionIgnoreTime);
+        Physics2D.IgnoreCollision(_playerCollider, platformCollider, false);
     }
 }

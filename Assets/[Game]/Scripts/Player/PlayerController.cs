@@ -3,13 +3,7 @@ using UnityEngine;
 
 namespace MovementController
 {
-    /// <summary>
-    /// Hey!
-    /// Tarodev here. I built this controller as there was a severe lack of quality & free 2D controllers out there.
-    /// I have a premium version on Patreon, which has every feature you'd expect from a polished controller. Link: https://www.patreon.com/tarodev
-    /// You can play and compete for best times here: https://tarodev.itch.io/extended-ultimate-2d-controller
-    /// If you hve any questions or would like to brag about your score, come to discord: https://discord.gg/tarodev
-    /// </summary>
+    
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IPlayerController
     {
@@ -48,10 +42,9 @@ namespace MovementController
         {
             _frameInput = new FrameInput
             {
-                JumpDown = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W),
-                JumpHeld = Input.GetButton("Jump") || Input.GetKey(KeyCode.W),
+                JumpDown = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow),
+                JumpHeld = Input.GetButton("Jump") || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow),
                 Move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")),
-                hopDownInput = Input.GetKeyDown(KeyCode.S)
             };
 
             if (_stats.SnapInput)
@@ -200,7 +193,6 @@ namespace MovementController
     {
         public bool JumpDown;
         public bool JumpHeld;
-        public bool hopDownInput;
         public Vector2 Move;
     }
     
