@@ -95,7 +95,7 @@ namespace MovementController
 
                 //SetColor(_landParticles);
 
-                _anim.SetTrigger(GroundedKey);
+                //_anim.SetTrigger(GroundedKey);
                 //_source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
                 _moveParticles.Play();
 
@@ -108,7 +108,7 @@ namespace MovementController
             }
         }
 
-        private static readonly int GroundedKey = Animator.StringToHash("Grounded");
+        //private static readonly int GroundedKey = Animator.StringToHash("Grounded");
         //private static readonly int IdleSpeedKey = Animator.StringToHash("IdleSpeed");
         //private static readonly int JumpKey = Animator.StringToHash("Jump");
     }

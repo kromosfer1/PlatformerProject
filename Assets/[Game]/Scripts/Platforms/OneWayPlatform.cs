@@ -12,7 +12,7 @@ public class OneWayPlatform : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             if(_currentOneWayPlatform != null)
-            StartCoroutine(DisableCollision());
+                StartCoroutine(DisableCollision());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
