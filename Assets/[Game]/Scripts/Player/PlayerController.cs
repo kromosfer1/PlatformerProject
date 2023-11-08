@@ -163,7 +163,7 @@ namespace MovementController
 
         #region Gravity
 
-        private void HandleGravity()
+        public void HandleGravity()
         {
             if (_grounded && _frameVelocity.y <= 0f)
             {
