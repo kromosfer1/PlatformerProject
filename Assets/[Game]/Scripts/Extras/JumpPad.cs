@@ -6,14 +6,20 @@ using DG.Tweening;
 public class JumpPad : MonoBehaviour
 {
     [SerializeField] private float _bouncePower;
-    [SerializeField] private Vector3 _endvalue;
+    [SerializeField] private Transform _targetPosition;
+    [SerializeField] private float _duration;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         IPlayerController player = collision.gameObject.GetComponent<IPlayerController>();
         if (player != null)
         {
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * _bouncePower,ForceMode2D.Impulse);
+            ExecuteBounce(collision.gameObject);
         }
+    }
+    
+    private void ExecuteBounce(GameObject obj)
+    {
+        obj.transform.DOLocalJump(_targetPosition.position, _bouncePower, 1, _duration);
     }
 }

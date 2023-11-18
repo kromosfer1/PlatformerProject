@@ -9,11 +9,11 @@ public class RotatingHazard : RotatingObject, IDamager
         IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
         if (damagable != null)
         {
-            DamageAction();
+            DamageAction(collision.transform.position,collision.gameObject);
         }
     }
 
-    public void DamageAction()
+    public void DamageAction(Vector2 damagablePos, GameObject objB)
     {
         Debug.Log("Damage Given");
     }

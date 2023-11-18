@@ -1,21 +1,17 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class MovingPlatform : MonoBehaviour, IPatrolling
+public class MovingPlatform : Patrolling
 
 {
-    [SerializeField] private Vector2 _targetpos;
-
-    public Vector2 targetPosition => _targetpos;
-
+    
     private void Start()
     {
-        StartPatrolling();
+        SetStartingPoint();
     }
-
-    public void StartPatrolling()
+    private void Update()
     {
-        transform.DOMove(_targetpos, 2f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
-    }
+        StartPatrolling();
+    }    
     
 }
