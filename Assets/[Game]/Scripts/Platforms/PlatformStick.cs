@@ -9,7 +9,7 @@ public class PlatformStick : MonoBehaviour
         IPlayerController player = collision.gameObject.GetComponent<IPlayerController>();
         if (player != null)
         {
-            collision.transform.SetParent(this.transform);
+            collision.transform.SetParent(transform);
         }
     }
 

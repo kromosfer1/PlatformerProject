@@ -1,11 +1,12 @@
 using UnityEngine;
+using System.Collections;
 
 namespace MovementController
 {
     /// <summary>
     /// VERY primitive animator example.
     /// </summary>
-    public class PlayerAnimator : MonoBehaviour
+    public class PlayerAnimator : Singleton<PlayerAnimator>
     {
         [Header("References")]
         [SerializeField] private Animator _anim;
@@ -107,6 +108,37 @@ namespace MovementController
                 _moveParticles.Stop();
             }
         }
+
+        #region Portal Animations
+        public void PortalAnimation(bool animationCheck)
+        {
+            _anim.SetBool("PortalIn", animationCheck);
+        }
+        public IEnumerator PortalIn(Collider2D obj, Transform destination)
+        {
+            Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
+
+            rb.simulated = false;
+            PortalAnimation(true);
+            StartCoroutine(MoveIntoPortal(obj));
+            yield return new WaitForSeconds(0.5f);
+            obj.transform.position = destination.position;
+            rb.velocity = Vector2.zero;
+            PortalAnimation(false);
+            yield return new WaitForSeconds(0.5f);
+            rb.simulated = true;
+        }
+        IEnumerator MoveIntoPortal(Collider2D objToMove)
+        {
+            float timer = 0;
+            while (timer < 0.5f)
+            {
+                objToMove.transform.position = Vector2.MoveTowards(objToMove.transform.position, transform.position, 3 * Time.deltaTime);
+                yield return new WaitForEndOfFrame();
+                timer += Time.deltaTime;
+            }
+        }
+        #endregion
 
         //private static readonly int GroundedKey = Animator.StringToHash("Grounded");
         //private static readonly int IdleSpeedKey = Animator.StringToHash("IdleSpeed");

@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IPlayerInputs
 {
     bool DownInput { get; }
+    bool InteractInput { get; }
 }
