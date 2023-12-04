@@ -1340,7 +1340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4856db7d7d074240af77769673c2f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 5
+  _rotationSpeed: 5.6
   _rotation: {x: 0, y: 0, z: 360}
 --- !u!212 &768290242
 SpriteRenderer:
@@ -2069,7 +2069,7 @@ GameObject:
   - component: {fileID: 1312738870}
   - component: {fileID: 1312738869}
   m_Layer: 6
-  m_Name: RotatingPlatform (1)
+  m_Name: RotatingHazard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2132,7 +2132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c37fe07e52cd2497e9025fe1d8ad776f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 5
+  _rotationSpeed: 3
   _rotation: {x: 0, y: 0, z: 360}
 --- !u!212 &1312738871
 SpriteRenderer:
@@ -2377,12 +2377,13 @@ GameObject:
   - component: {fileID: 1550095937}
   - component: {fileID: 1550095936}
   - component: {fileID: 1550095946}
-  - component: {fileID: 1550095939}
-  - component: {fileID: 1550095942}
-  - component: {fileID: 1550095945}
   - component: {fileID: 1550095934}
   - component: {fileID: 1550095940}
   - component: {fileID: 1550095941}
+  - component: {fileID: 1550095939}
+  - component: {fileID: 1550095942}
+  - component: {fileID: 1550095945}
+  - component: {fileID: 1550095947}
   - component: {fileID: 1550095944}
   - component: {fileID: 1550095943}
   m_Layer: 0
@@ -7390,6 +7391,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80a41e704b769c9488f41320dedd00fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1550095947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550095933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef951f5f6d8cc43c69c8bf693e03599c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1565086940

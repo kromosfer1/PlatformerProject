@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IDamager
 {
+    int damageValue { get; }
     void DamageAction(Vector2 damagablePos, GameObject obj);
 }
