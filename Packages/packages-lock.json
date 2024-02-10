@@ -1,5 +1,18 @@
 {
   "dependencies": {
+    "com.chark.scriptable-events": {
+      "version": "https://github.com/chark/scriptable-events.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "24c4c9bc4c585fdace4b778f1876d24033e90934"
+    },
+    "com.robotdreams.unityruntimeui": {
+      "version": "file:UnityRuntimeUI",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "9.0.3",
       "depth": 1,
