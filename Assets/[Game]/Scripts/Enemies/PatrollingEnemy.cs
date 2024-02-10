@@ -8,6 +8,9 @@ public class PatrollingEnemy : Patrolling, IDamager
 {
     [SerializeField] private float _pushPower;
     [SerializeField] private float _duration;
+
+    public int damageValue => 2;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
@@ -35,7 +38,7 @@ public class PatrollingEnemy : Patrolling, IDamager
             //Player.Instance.StepBack(Vector2.right * 5f);
             obj.transform.DOLocalJump(new Vector3(transform.localPosition.x + 10, transform.localPosition.y, 0), _pushPower, 1, _duration);
         }
-        else
+        else if (damagablePos.x < transform.position.x)
         {
             //Player.Instance.StepBack(Vector2.left * 5f);
             obj.transform.DOLocalJump(new Vector3(transform.localPosition.x - 1, transform.localPosition.y, 0), _pushPower, 1, _duration);

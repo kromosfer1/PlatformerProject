@@ -6,7 +6,7 @@ using DG.Tweening;
 public class RotatingObject : MonoBehaviour, IRotate
 {
     private Transform _rotatingObject;
-    [SerializeField] private float _rotationSpeed;
+    [Range(0.1f,100)][SerializeField] private float _rotationSpeed;
     [SerializeField] private Vector3 _rotation;
 
     private void Start()

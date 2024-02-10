@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RotatingHazard : RotatingObject, IDamager
 {
+    public int damageValue => 1;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();

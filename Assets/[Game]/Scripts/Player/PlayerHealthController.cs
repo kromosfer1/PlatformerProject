@@ -1,42 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealthController : MonoBehaviour, IPlayerHealth, IDamagable
+public class PlayerHealthController : MonoBehaviour, IDamagable
 {
-    private Vector2 spawnPoint;
-    Vector2 IPlayerHealth.SpawnPoint => spawnPoint;
+    private int _currentHealth = 3;
 
-    private void Start()
+    private void OnEnable()
     {
-        spawnPoint = transform.position;
-        Respawn();
-    }
-    private void Update()
-    {
-        CharacterDeath();
+        PlayerCollisionController.damageTaken += TakeDamage;
     }
 
-    public void UpdateSpawnPoint(Vector2 newSpawnPoint)
+    private void OnDisable()
     {
-        spawnPoint = newSpawnPoint;
+        PlayerCollisionController.damageTaken -= TakeDamage;
     }
 
-    private void CharacterDeath()
+    public void TakeDamage(int amount)
     {
-        if (gameObject.transform.position.y < -15)
+        _currentHealth -= amount;
+
+        if (_currentHealth <= 0)
         {
-            Respawn();
+            _currentHealth = 0;
+            Kill();
         }
     }
-    public void TakeDamage()
-    {
-        Debug.Log("Damage taken");
-    }
 
-    private void Respawn()
+    private void Kill()
     {
-        gameObject.transform.position = spawnPoint;
-        Debug.Log("respawned");
+        Debug.Log($"Player Died");
     }
 }
