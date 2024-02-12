@@ -5,15 +5,26 @@ using System;
 
 public class PlayerCollisionController : MonoBehaviour
 {
-    public static event Action<int> damageTaken;
+    public static event Action<int> DamageTaken;
+    public static event Action<Vector2> UpdateSpawnPoint;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        ICheckpoint checkpoint = collision.gameObject.GetComponent<ICheckpoint>();
+        if (checkpoint != null)
+        {
+            UpdateSpawnPoint?.Invoke(checkpoint.LastCheckpoint);
+            checkpoint.Collider.enabled = false;
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         IDamager damager = collision.gameObject.GetComponent<IDamager>();
         if (damager != null)
         {
-            damageTaken?.Invoke(damager.damageValue);
-            Debug.Log($"{damager.damageValue} damage taken");
+            DamageTaken?.Invoke(damager.DamageValue);
+            Debug.Log($"{damager.DamageValue} damage taken");
         }
     }
     

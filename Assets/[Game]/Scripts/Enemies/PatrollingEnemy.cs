@@ -9,7 +9,7 @@ public class PatrollingEnemy : Patrolling, IDamager
     [SerializeField] private float _pushPower;
     [SerializeField] private float _duration;
 
-    public int damageValue => 2;
+    public int DamageValue => 2;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
