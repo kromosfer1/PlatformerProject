@@ -8,27 +8,40 @@ public class PlayerHealthController : MonoBehaviour, IDamagable
     [SerializeField] private int _currentHealth = 3;
     [SerializeField] private Vector2 _respawnPoint;
     [SerializeField] private float _dyingYpos;
-    public static event Action PlayerDied;
+
+    private CharacterEventHandler characterEventHandler;
+    private CharacterEventHandler CharacterEventHandler
+    {
+        get
+        {
+            return characterEventHandler == null ? characterEventHandler
+                = transform.root.GetComponent<CharacterEventHandler>()
+                : characterEventHandler;
+        }
+    }
 
     private void Start()
     {
         _respawnPoint = gameObject.transform.position;
+        Revive();
     }
 
     private void Update()
     {
         Death();
-        Revive();
+        ReviveTest();
     }
 
     private void OnEnable()
     {
+        CharacterEventHandler.OnReviveRequested.AddListener(Revive);
         PlayerCollisionController.DamageTaken += TakeDamage;
         PlayerCollisionController.UpdateSpawnPoint += UpdateRespawnPoint;
     }
 
     private void OnDisable()
     {
+        CharacterEventHandler.OnReviveRequested.RemoveListener(Revive);
         PlayerCollisionController.DamageTaken -= TakeDamage;
         PlayerCollisionController.UpdateSpawnPoint -= UpdateRespawnPoint;
 
@@ -49,8 +62,10 @@ public class PlayerHealthController : MonoBehaviour, IDamagable
         if (_currentHealth <= 0 || gameObject.transform.position.y <= _dyingYpos)
         {
             _currentHealth = 0;
-            PlayerDied?.Invoke();
+            CharacterEventHandler.OnCharacterDeath?.Invoke();
+
             KillPlayerAction();
+            return;
         }
     }
 
@@ -61,14 +76,17 @@ public class PlayerHealthController : MonoBehaviour, IDamagable
 
     private void Revive()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Respawn();
-        }
+        _currentHealth = 3;
+        gameObject.transform.position = _respawnPoint;
+        CharacterEventHandler.OnCharacterRevive?.Invoke();
     }
 
-    private void Respawn()
+    private void ReviveTest()
     {
-        gameObject.transform.position = _respawnPoint;
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Revive();
+            CharacterEventHandler.OnCharacterRevive?.Invoke();
+        }
     }
 }
