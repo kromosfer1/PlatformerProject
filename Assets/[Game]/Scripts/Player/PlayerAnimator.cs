@@ -20,7 +20,6 @@ namespace MovementController
         [Header("Particles")]
         //[SerializeField] private ParticleSystem _jumpParticles;
         //[SerializeField] private ParticleSystem _launchParticles;
-        [SerializeField] private ParticleSystem _moveParticles;
         //[SerializeField] private ParticleSystem _landParticles;
 
         //[Header("Audio Clips")]
@@ -40,16 +39,12 @@ namespace MovementController
         {
             _player.Jumped += OnJumped;
             _player.GroundedChanged += OnGroundedChanged;
-
-            _moveParticles.Play();
         }
 
         private void OnDisable()
         {
             _player.Jumped -= OnJumped;
             _player.GroundedChanged -= OnGroundedChanged;
-
-            _moveParticles.Stop();
         }
 
         private void Update()
@@ -98,14 +93,13 @@ namespace MovementController
 
                 //_anim.SetTrigger(GroundedKey);
                 //_source.PlayOneShot(_footsteps[Random.Range(0, _footsteps.Length)]);
-                _moveParticles.Play();
 
                 //_landParticles.transform.localScale = Vector3.one * Mathf.InverseLerp(0, 40, impact);
                 //_landParticles.Play();
             }
             else
             {
-                _moveParticles.Stop();
+
             }
         }
 
