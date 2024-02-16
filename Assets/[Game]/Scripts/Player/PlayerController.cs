@@ -36,7 +36,6 @@ namespace MovementController
         {
             _time += Time.deltaTime;
             GatherInput();
-            Debug.Log(_grounded);
         }
 
         public void GatherInput()
