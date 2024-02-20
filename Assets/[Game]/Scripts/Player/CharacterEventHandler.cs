@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class CharacterEventHandler : MonoBehaviour
 {
+    public UnityEvent OnDamageTaken;
     public UnityEvent OnCharacterRevive;
     public UnityEvent OnCharacterDeath;
     public UnityEvent OnReviveRequested;

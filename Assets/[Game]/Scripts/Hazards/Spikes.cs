@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Spikes : MonoBehaviour, IDamager
 {
-    [SerializeField] private int damageValue;
-    public int DamageValue => damageValue;
+    [SerializeField] private int _damageValue;
+    public int DamageValue => _damageValue;
 
     public void DamageAction(Vector2 damagablePos, GameObject obj)
     {

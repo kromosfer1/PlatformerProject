@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealthController : MonoBehaviour, IDamagable
+public class PlayerHealthController : MonoBehaviour, IDamagable, IPlayerHealth
 {
-    [SerializeField] private int _currentHealth = 3;
+    [SerializeField] private int _maxHealth = 3;
+    [SerializeField] private int _currentHealth;
     [SerializeField] private Vector2 _respawnPoint;
     [SerializeField] private float _dyingYpos;
 
@@ -20,6 +21,16 @@ public class PlayerHealthController : MonoBehaviour, IDamagable
         }
     }
 
+    public Vector2 SpawnPoint => _respawnPoint;
+
+    public int MaxHealth => _maxHealth;
+
+    public int CurrentHealth => _currentHealth;
+
+    private void Awake()
+    {
+        _currentHealth = _maxHealth;
+    }
     private void Start()
     {
         _respawnPoint = gameObject.transform.position;
@@ -28,7 +39,7 @@ public class PlayerHealthController : MonoBehaviour, IDamagable
 
     private void Update()
     {
-        Death();
+        OnPlayerDeath();
         ReviveTest();
     }
 
@@ -50,6 +61,7 @@ public class PlayerHealthController : MonoBehaviour, IDamagable
     public void TakeDamage(int amount)
     {
         _currentHealth -= amount;
+        characterEventHandler.OnDamageTaken?.Invoke();
     }
 
     private void UpdateRespawnPoint(Vector2 checkpoint)
@@ -57,7 +69,7 @@ public class PlayerHealthController : MonoBehaviour, IDamagable
         _respawnPoint = checkpoint;
     }
 
-    private void Death()
+    private void OnPlayerDeath()
     {
         if (_currentHealth <= 0 || gameObject.transform.position.y <= _dyingYpos)
         {
@@ -76,7 +88,7 @@ public class PlayerHealthController : MonoBehaviour, IDamagable
 
     private void Revive()
     {
-        _currentHealth = 3;
+        _currentHealth = _maxHealth;
         gameObject.transform.position = _respawnPoint;
         CharacterEventHandler.OnCharacterRevive?.Invoke();
     }
