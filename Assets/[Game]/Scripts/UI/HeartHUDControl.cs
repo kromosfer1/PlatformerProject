@@ -17,7 +17,7 @@ public class HeartHUDControl : MonoBehaviour
 
         if (playerHealth == null)
         {
-            Debug.LogError("Couldn't find an object implementing IPlayerHealth!");
+            Debug.LogError("Couldn't find an object implementing PlayerHealthController!");
         }
 
         DrawHearts();
