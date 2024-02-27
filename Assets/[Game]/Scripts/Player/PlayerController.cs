@@ -24,6 +24,17 @@ namespace MovementController
 
         private float _time;
 
+        private CharacterEventHandler characterEventHandler;
+        private CharacterEventHandler CharacterEventHandler
+        {
+            get
+            {
+                return characterEventHandler == null ? characterEventHandler
+                    = transform.root.GetComponentInChildren<CharacterEventHandler>()
+                    : characterEventHandler;
+            }
+        }
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -140,6 +151,7 @@ namespace MovementController
             _coyoteUsable = false;
             _frameVelocity.y = _stats.JumpPower;
             Jumped?.Invoke();
+            CharacterEventHandler.OnCharacterJumped?.Invoke();
         }
 
         #endregion
