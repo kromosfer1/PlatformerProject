@@ -13,6 +13,7 @@ namespace MovementController
         private FrameInput _frameInput;
         private Vector2 _frameVelocity;
         private bool _cachedQueryStartInColliders;
+        [SerializeField]private bool canMove;
 
         #region Interface
 
@@ -34,7 +35,7 @@ namespace MovementController
                     : characterEventHandler;
             }
         }
-
+        
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -46,15 +47,29 @@ namespace MovementController
         private void Update()
         {
             _time += Time.deltaTime;
-            GatherInput();
+            if (canMove == true)
+            {
+                GatherInput();                
+            }
+        }
+        private void OnEnable()
+        {
+            CharacterEventHandler.OnCharacterDeath.AddListener(CanMoveClose);
+            CharacterEventHandler.OnCharacterRevive.AddListener(CanMoveOpen);
+        }
+        private void OnDisable()
+        {
+            CharacterEventHandler.OnCharacterDeath.RemoveListener(CanMoveClose);
+            CharacterEventHandler.OnCharacterRevive.RemoveListener(CanMoveOpen);
         }
 
         public void GatherInput()
         {
             _frameInput = new FrameInput
             {
-                JumpDown = Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow),
-                JumpHeld = Input.GetButton("Jump") || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow),
+                //Space key is broken after revive. When pressed with "D" Button it opens settings panel
+                JumpDown = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow),
+                JumpHeld = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow),
                 Move = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")),
             };
 
@@ -73,13 +88,17 @@ namespace MovementController
 
         private void FixedUpdate()
         {
-            CheckCollisions();
+            if (canMove == true)
+            {
+                CheckCollisions();
 
-            HandleJump();
-            HandleDirection();
-            HandleGravity();
+                HandleJump();
+                HandleDirection();
+                HandleGravity();
+
+                ApplyMovement();
+            }
             
-            ApplyMovement();
         }
 
         #region Collisions
@@ -190,7 +209,14 @@ namespace MovementController
         }
 
         #endregion
-
+        private void CanMoveOpen()
+        {
+            canMove = true;
+        }
+        private void CanMoveClose()
+        {
+            canMove = false;
+        }
         private void ApplyMovement() => _rb.velocity = _frameVelocity;
 
 #if UNITY_EDITOR

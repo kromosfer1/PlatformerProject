@@ -77,7 +77,7 @@ public class PlayerHealthController : MonoBehaviour, IDamagable, IPlayerHealth
             CharacterEventHandler.OnCharacterDeath?.Invoke();
 
             KillPlayerAction();
-            return;
+
         }
     }
 
