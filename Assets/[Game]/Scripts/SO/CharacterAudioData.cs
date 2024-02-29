@@ -14,14 +14,22 @@ public class CharacterAudioData : ScriptableObject
 {
     public List<AudioData> Data = new List<AudioData>();
 
-
-    public Dictionary<string, AudioClip> CharacterAudioCollection = new Dictionary<string, AudioClip>();
-
-    private void Awake()
+    private Dictionary<string, AudioClip> _data;
+    public Dictionary<string, AudioClip> CharacterAudioCollection
     {
-        for (int i = 0; i < Data.Count; i++)
+        get
         {
-            CharacterAudioCollection[Data[i].ID] = Data[i].AudioClip;
+            if (_data == null)
+            {
+                _data = new Dictionary<string, AudioClip>();
+
+                for (int i = 0; i < Data.Count; i++)
+                {
+                    _data[Data[i].ID] = Data[i].AudioClip;
+                }
+            }
+            return _data;
+
         }
     }
 }

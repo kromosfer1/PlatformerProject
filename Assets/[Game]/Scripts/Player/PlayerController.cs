@@ -158,7 +158,7 @@ namespace MovementController
             if (!_jumpToConsume && !HasBufferedJump) return;
 
             if (_grounded || CanUseCoyote) ExecuteJump();
-
+            
             _jumpToConsume = false;
         }
 
