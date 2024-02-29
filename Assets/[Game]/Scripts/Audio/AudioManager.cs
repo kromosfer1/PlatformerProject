@@ -8,19 +8,32 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private StringScriptableEvent OnAudioRequested;
 
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private CharacterAudioData audioData;
-
-    [SerializeField] private AudioClip audioClip;
 
     private void OnEnable()
     {
+        OnAudioRequested.AddListener(PlaySFX);
     }
+
     private void OnDisable()
     {
+        OnAudioRequested.RemoveListener(PlaySFX);
     }
 
-    private void PlaySFX(string audioID)
+    public void PlaySFX(string audioID)
     {
+        //AudioClip audioClip = audioData.CharacterAudioCollection[audioID];
+        //audioSource.PlayOneShot(audioClip);
 
+        if (audioData.CharacterAudioCollection.TryGetValue(audioID, out AudioClip audioClip))
+        {
+            audioSource.clip = audioClip;
+            audioSource.PlayOneShot(audioClip);
+        }
+        else
+        {
+            Debug.LogWarning($"Audio clip with ID '{audioID}' not found.");
+        }
     }
 }

@@ -4557,6 +4557,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnAudioRequested: {fileID: 11400000, guid: 8c82bbc3edb4944e9a578fd2c7d546cc, type: 2}
+  audioSource: {fileID: 1412018774}
+  audioData: {fileID: 11400000, guid: 524725147980d4edc9bdbc00ce794c7c, type: 2}
 --- !u!82 &1412018774
 AudioSource:
   m_ObjectHideFlags: 0
