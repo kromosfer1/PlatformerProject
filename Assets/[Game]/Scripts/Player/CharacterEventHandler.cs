@@ -10,4 +10,6 @@ public class CharacterEventHandler : MonoBehaviour
     public UnityEvent OnCharacterDeath;
     public UnityEvent OnReviveRequested;
     public UnityEvent OnCharacterJumped;
+    public UnityEvent OnLevelFinished;
+    public UnityEvent OnCharacterRunning;
 }

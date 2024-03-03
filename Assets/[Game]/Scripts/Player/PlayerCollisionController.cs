@@ -8,6 +8,18 @@ public class PlayerCollisionController : MonoBehaviour
     public static event Action<int> DamageTaken;
     public static event Action<Vector2> UpdateSpawnPoint;
 
+    #region EventHandler
+    private CharacterEventHandler characterEventHandler;
+    private CharacterEventHandler CharacterEventHandler
+    {
+        get
+        {
+            return characterEventHandler == null ? characterEventHandler
+                = transform.root.GetComponent<CharacterEventHandler>()
+                : characterEventHandler;
+        }
+    }
+    #endregion
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ICheckpoint checkpoint = collision.gameObject.GetComponent<ICheckpoint>();
@@ -15,6 +27,12 @@ public class PlayerCollisionController : MonoBehaviour
         {
             UpdateSpawnPoint?.Invoke(checkpoint.LastCheckpoint);
             checkpoint.Collider.enabled = false;
+        }
+
+        ILevelFinish levelFinish = collision.gameObject.GetComponent<ILevelFinish>();
+        if (levelFinish != null)
+        {
+            CharacterEventHandler.OnLevelFinished?.Invoke();
         }
     }
 
