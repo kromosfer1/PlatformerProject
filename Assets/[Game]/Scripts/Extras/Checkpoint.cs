@@ -15,4 +15,8 @@ public class Checkpoint : MonoBehaviour, ICheckpoint
         lastCheckpoint = gameObject.transform.position;
         checkpointCollider = gameObject.GetComponent<BoxCollider2D>();
     }
+
+    public void OnCollisionAction()
+    {
+    }
 }

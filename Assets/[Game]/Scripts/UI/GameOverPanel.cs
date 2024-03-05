@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace AnilHarmandali.UnityRuntimeUI
 {
@@ -19,6 +20,10 @@ namespace AnilHarmandali.UnityRuntimeUI
         {
             base.HidePanel();
             EventHandler.OnReviveRequested?.Invoke();
+        }
+        public void RestartLevel()
+        {
+            SceneManager.LoadScene(1);
         }
     }
 }
