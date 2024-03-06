@@ -44,14 +44,6 @@ namespace MovementController
             _cachedQueryStartInColliders = Physics2D.queriesStartInColliders;
         }
 
-        private void Update()
-        {
-            _time += Time.deltaTime;
-            if (canMove == true)
-            {
-                GatherInput();                
-            }
-        }
         private void OnEnable()
         {
             CharacterEventHandler.OnCharacterDeath.AddListener(CanMoveClose);
@@ -83,6 +75,16 @@ namespace MovementController
             {
                 _jumpToConsume = true;
                 _timeJumpWasPressed = _time;
+            }
+        }
+
+        private void Update()
+        {
+            _time += Time.deltaTime;
+            if (canMove == true)
+            {
+                GatherInput();
+                RunningCheck();
             }
         }
 
@@ -187,6 +189,14 @@ namespace MovementController
             else
             {
                 _frameVelocity.x = Mathf.MoveTowards(_frameVelocity.x, _frameInput.Move.x * _stats.MaxSpeed, _stats.Acceleration * Time.fixedDeltaTime);
+            }
+        }
+
+        private void RunningCheck()
+        {
+            if (_frameVelocity.y <= 0 && _frameVelocity.x * _frameVelocity.x > 0.001f && _grounded)
+            {
+                CharacterEventHandler.OnCharacterRunning?.Invoke();
             }
         }
 

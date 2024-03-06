@@ -12,4 +12,5 @@ public class CharacterEventHandler : MonoBehaviour
     public UnityEvent OnCharacterJumped;
     public UnityEvent OnLevelFinished;
     public UnityEvent OnCharacterRunning;
+    public UnityEvent OnCheckpointActivation;
 }

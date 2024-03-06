@@ -17,3 +17,9 @@ MonoBehaviour:
     AudioClip: {fileID: 8300000, guid: 304429643c5c04533a6adf8b06e8f200, type: 3}
   - ID: DamageAudio
     AudioClip: {fileID: 8300000, guid: dce7f351a594f4d17ba2c4d70da34ee2, type: 3}
+  - ID: CheckpointAudio
+    AudioClip: {fileID: 8300000, guid: 98927d0d1e0974b91baf1aa04c29dde9, type: 3}
+  - ID: Footstep1
+    AudioClip: {fileID: 8300000, guid: 740f1d82f993f4e71bdfd28d1dcaafca, type: 3}
+  - ID: Footstep2
+    AudioClip: {fileID: 8300000, guid: d90e34129b8fb4c80bea1faa2a957df8, type: 3}

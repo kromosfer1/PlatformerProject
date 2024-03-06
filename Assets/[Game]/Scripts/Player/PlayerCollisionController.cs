@@ -27,6 +27,8 @@ public class PlayerCollisionController : MonoBehaviour
         {
             UpdateSpawnPoint?.Invoke(checkpoint.LastCheckpoint);
             checkpoint.Collider.enabled = false;
+            checkpoint.OnCollisionAction();
+            CharacterEventHandler.OnCheckpointActivation?.Invoke();
         }
 
         ILevelFinish levelFinish = collision.gameObject.GetComponent<ILevelFinish>();
