@@ -18,5 +18,10 @@ namespace AnilHarmandali.UnityRuntimeUI
             base.HidePanel();
             PauseControl.ResumeGame();
         }
+
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
     }
 }

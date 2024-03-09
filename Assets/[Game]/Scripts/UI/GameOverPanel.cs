@@ -9,6 +9,7 @@ namespace AnilHarmandali.UnityRuntimeUI
     {
         protected override string ID => "GameOverPanel";
 
+        [SerializeField] private int _currentLevelIndex;
         private CharacterEventHandler eventHandler;
         private CharacterEventHandler EventHandler => eventHandler ?? FindAnyObjectByType<CharacterEventHandler>();
 
@@ -23,7 +24,7 @@ namespace AnilHarmandali.UnityRuntimeUI
         }
         public void RestartLevel()
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(_currentLevelIndex);
         }
     }
 }

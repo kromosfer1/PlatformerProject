@@ -24,7 +24,6 @@ public class CharacterAudioController : CharacterAudioControllerBase
     private string jumpID = "JumpAudio";
     private string damageID = "DamageAudio";
     private string checkpointID = "CheckpointAudio";
-    //private string footstepsID = "Footstep1";
     private string[] footstepsIDs = { "Footstep1", "Footstep2" };
 
     #endregion

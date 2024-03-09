@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEditor.Experimental.GraphView;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PatrollingEnemy : Patrolling, IDamager
 {
     [SerializeField] private float _pushPower;
     [SerializeField] private float _duration;
     [SerializeField] private int _damageValue;
-
+    [SerializeField] private SpriteRenderer _sprite;
+    private float _startingX;
+    private bool _isMovingRight = true;
     public int DamageValue => _damageValue;
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -23,13 +25,32 @@ public class PatrollingEnemy : Patrolling, IDamager
 
     private void Start()
     {
+        _startingX = transform.position.x;
         SetStartingPoint();
     }
 
     private void Update()
     {
         StartPatrolling();
+        HandleSpriteFlip();
     }
+    private void HandleSpriteFlip()
+    {
+        float currentX = transform.position.x;
+        if (currentX > _startingX) // If current position is greater than previous position, enemy is moving right
+        {
+            _sprite.flipX = false; // No flip
+            _isMovingRight = true;
+        }
+        else if (currentX < _startingX) // If current position is less than previous position, enemy is moving left
+        {
+            _sprite.flipX = true; // Flip horizontally
+            _isMovingRight = false;
+        }
+
+        _startingX = currentX;
+    }
+
     public void DamageAction(Vector2 damagablePos, GameObject obj)
     {
         Debug.Log("Damage Given");
@@ -37,13 +58,10 @@ public class PatrollingEnemy : Patrolling, IDamager
         if (damagablePos.x > transform.position.x)
         {
             //Player.Instance.StepBack(Vector2.right * 5f);
-            obj.transform.DOLocalJump(new Vector3(transform.localPosition.x + 10, transform.localPosition.y, 0), _pushPower, 1, _duration);
         }
         else if (damagablePos.x < transform.position.x)
         {
             //Player.Instance.StepBack(Vector2.left * 5f);
-            obj.transform.DOLocalJump(new Vector3(transform.localPosition.x - 1, transform.localPosition.y, 0), _pushPower, 1, _duration);
-
         }
     }
 }
