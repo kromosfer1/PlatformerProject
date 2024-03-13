@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 namespace MovementController
 {
@@ -27,8 +28,26 @@ namespace MovementController
         //private AudioClip[] _footsteps;
 
         //private AudioSource _source;
+
+        [Header("Damage Animation Settings")]
+        [SerializeField] private float _fadeDuration;
+        [SerializeField] private float _betweenFadingTime;
+
         private IPlayerController _player;
         private bool _grounded;
+
+        #region EventHandler
+        private CharacterEventHandler characterEventHandler;
+        private CharacterEventHandler CharacterEventHandler
+        {
+            get
+            {
+                return characterEventHandler == null ? characterEventHandler
+                    = transform.root.GetComponent<CharacterEventHandler>()
+                    : characterEventHandler;
+            }
+        }
+        #endregion
 
         private void Awake()
         {
@@ -39,12 +58,14 @@ namespace MovementController
         {
             _player.Jumped += OnJumped;
             _player.GroundedChanged += OnGroundedChanged;
+            CharacterEventHandler.OnDamageTaken.AddListener(HandleDamageAnimation);
         }
 
         private void OnDisable()
         {
             _player.Jumped -= OnJumped;
             _player.GroundedChanged -= OnGroundedChanged;
+            CharacterEventHandler.OnDamageTaken.RemoveListener(HandleDamageAnimation);
         }
 
         private void Update()
@@ -67,6 +88,19 @@ namespace MovementController
         {
             var runningTilt = _grounded ? Quaternion.Euler(0, 0, _maxTilt * _player.FrameInput.x) : Quaternion.identity;
             _anim.transform.up = Vector3.RotateTowards(_anim.transform.up, runningTilt * Vector2.up, _tiltSpeed * Time.deltaTime, 0f);
+        }
+
+        private void HandleDamageAnimation()
+        {
+            _anim.SetTrigger("TakeHit");
+            _sprite.DOColor(Color.red, _fadeDuration)
+                .OnComplete(() =>
+                {
+                    DOVirtual.DelayedCall(_betweenFadingTime, () =>
+                    {
+                        _sprite.DOColor(Color.white, _fadeDuration);
+                    });
+                });
         }
 
         private void OnJumped()

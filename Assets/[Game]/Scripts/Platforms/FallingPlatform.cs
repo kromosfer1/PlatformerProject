@@ -1,20 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FallingPlatform : MonoBehaviour
 {
+    private Rigidbody2D rb;
+
+    [Header("PLATFORM STATS")]
+    [Tooltip("Fall delay after character hit the platform")]
     [SerializeField] private float _fallDelay;
-    [SerializeField] private float _destroyDelay;
-    [SerializeField] private Rigidbody2D _rigidBody;
+
+    [Tooltip("Destroy delay after platform fall")]
+    [SerializeField] private float _moveBackDelay;
     private float _zeroDelay = 0;
+    private Vector2 platformInitialPosition;
+
+    private bool platformReturningBack;
+    private bool platformFalling;
+
+    public UnityAction FallStart;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        platformInitialPosition = transform.position;
+    }
+
+    private void Update()
+    {
+        if (platformReturningBack)
+            transform.position = Vector2.MoveTowards(transform.position, platformInitialPosition, 20f * Time.deltaTime);
+
+        if (transform.position.y == platformInitialPosition.y)
+            platformReturningBack = false;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         IPlayerController player = collision.gameObject.GetComponent<IPlayerController>();
-        if (player != null)
+        if (player != null && platformFalling == false)
         {
-            StartCoroutine(Fall(_fallDelay,_destroyDelay));
+            StartCoroutine(PlatformAction(_fallDelay,_moveBackDelay));
+            FallStart?.Invoke();
         }
     }
 
@@ -24,14 +52,22 @@ public class FallingPlatform : MonoBehaviour
         if (player != null)
         {
             StopAllCoroutines();
-            StartCoroutine(Fall(_zeroDelay, _destroyDelay));
+            StartCoroutine(PlatformAction(_zeroDelay, _moveBackDelay));
         }
     }
 
-    private IEnumerator Fall(float fallDelay, float destroyDelay)
+    private IEnumerator PlatformAction(float fallDelay, float moveBackDelay)
     {
+        platformFalling = true;
         yield return new WaitForSeconds(fallDelay);
-        _rigidBody.bodyType = RigidbodyType2D.Dynamic;
-        Destroy(gameObject, destroyDelay);
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        yield return new WaitForSeconds(moveBackDelay);
+        platformReturningBack = true;
+        rb.velocity = Vector2.zero;
+        rb.isKinematic = true;
+        platformFalling = false;
+
+        //Destroy(gameObject, destroyDelay);
     }
+
 }

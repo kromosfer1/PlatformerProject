@@ -2915,6 +2915,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fa404b9570ee43d992e872f9bb0de19, type: 3}
+--- !u!114 &544812794 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 245896899403246572, guid: 6fa404b9570ee43d992e872f9bb0de19, type: 3}
+  m_PrefabInstance: {fileID: 544812793}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caff81449df014d08b52e843dd0c55d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &548810162
 GameObject:
   m_ObjectHideFlags: 0
@@ -28339,6 +28350,22 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1710888823795137155, guid: cbce4a7c673cf5a47977f1e6985088c1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 544812794}
+    - target: {fileID: 1710888823795137155, guid: cbce4a7c673cf5a47977f1e6985088c1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMasterVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761032635138930277, guid: cbce4a7c673cf5a47977f1e6985088c1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 544812794}
+    - target: {fileID: 1761032635138930277, guid: cbce4a7c673cf5a47977f1e6985088c1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMusicVolume
+      objectReference: {fileID: 0}
     - target: {fileID: 1979478638688834753, guid: cbce4a7c673cf5a47977f1e6985088c1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -28526,6 +28553,14 @@ PrefabInstance:
     - target: {fileID: 5893135161845435692, guid: cbce4a7c673cf5a47977f1e6985088c1, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034029874584475472, guid: cbce4a7c673cf5a47977f1e6985088c1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 544812794}
+    - target: {fileID: 6034029874584475472, guid: cbce4a7c673cf5a47977f1e6985088c1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSFXVolume
       objectReference: {fileID: 0}
     - target: {fileID: 6470715321892859765, guid: cbce4a7c673cf5a47977f1e6985088c1, type: 3}
       propertyPath: m_AnchorMax.y
@@ -29595,7 +29630,6 @@ SceneRoots:
   - {fileID: 740910434}
   - {fileID: 339016991}
   - {fileID: 544812793}
-  - {fileID: 2011524187}
   - {fileID: 2004665863}
   - {fileID: 1167909722}
   - {fileID: 303920571}
@@ -29624,6 +29658,7 @@ SceneRoots:
   - {fileID: 1899028188}
   - {fileID: 520803755}
   - {fileID: 1249201213}
+  - {fileID: 2011524187}
   - {fileID: 8111104889418682733}
   - {fileID: 1457880827}
   - {fileID: 642996897}

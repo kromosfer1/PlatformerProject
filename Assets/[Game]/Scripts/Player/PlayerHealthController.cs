@@ -40,7 +40,6 @@ public class PlayerHealthController : MonoBehaviour, IDamagable, IPlayerHealth
     private void Update()
     {
         OnPlayerDeath();
-        ReviveTest();
     }
 
     private void OnEnable()
@@ -61,7 +60,7 @@ public class PlayerHealthController : MonoBehaviour, IDamagable, IPlayerHealth
     public void TakeDamage(int amount)
     {
         _currentHealth -= amount;
-        characterEventHandler.OnDamageTaken?.Invoke();
+        CharacterEventHandler.OnDamageTaken?.Invoke();
     }
 
     private void UpdateRespawnPoint(Vector2 checkpoint)
@@ -91,14 +90,5 @@ public class PlayerHealthController : MonoBehaviour, IDamagable, IPlayerHealth
         _currentHealth = _maxHealth;
         gameObject.transform.position = _respawnPoint;
         CharacterEventHandler.OnCharacterRevive?.Invoke();
-    }
-
-    private void ReviveTest()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Revive();
-            CharacterEventHandler.OnCharacterRevive?.Invoke();
-        }
     }
 }
