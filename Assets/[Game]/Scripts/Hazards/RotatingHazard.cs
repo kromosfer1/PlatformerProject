@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class RotatingHazard : RotatingObject, IDamager
 {
-    public int DamageValue => 1;
+    [SerializeField] public int _damageValue;
+    public int DamageValue => _damageValue;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
