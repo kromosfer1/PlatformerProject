@@ -11,7 +11,7 @@ public class FallingPlatform : MonoBehaviour
     [Tooltip("Fall delay after character hit the platform")]
     [SerializeField] private float _fallDelay;
 
-    [Tooltip("Destroy delay after platform fall")]
+    [Tooltip("Fell platform moves back to original position after delay")]
     [SerializeField] private float _moveBackDelay;
     private float _zeroDelay = 0;
     private Vector2 platformInitialPosition;

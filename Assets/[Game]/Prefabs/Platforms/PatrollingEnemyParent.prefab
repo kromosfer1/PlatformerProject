@@ -182,6 +182,7 @@ MonoBehaviour:
   _pushPower: 0.1
   _duration: 0.2
   _damageValue: 0
+  _sprite: {fileID: 0}
 --- !u!1 &6337502785583022562
 GameObject:
   m_ObjectHideFlags: 0
