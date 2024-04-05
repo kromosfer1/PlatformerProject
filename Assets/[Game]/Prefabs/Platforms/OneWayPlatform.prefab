@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerCollider: {fileID: 0}
-  _collisionIgnoreTime: 0.25
+  _collisionIgnoreTime: 0.5
 --- !u!1 &6078274358486608429
 GameObject:
   m_ObjectHideFlags: 0
