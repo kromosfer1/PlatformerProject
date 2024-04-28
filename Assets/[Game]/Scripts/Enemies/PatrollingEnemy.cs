@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PatrollingEnemy : Patrolling, IDamager
 {
@@ -53,7 +52,7 @@ public class PatrollingEnemy : Patrolling, IDamager
 
     public void DamageAction(Vector2 damagablePos, GameObject obj)
     {
-        Debug.Log("Damage Given");
+        //Debug.Log("Damage Given");
 
         if (damagablePos.x > transform.position.x)
         {

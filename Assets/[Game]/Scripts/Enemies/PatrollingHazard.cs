@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PatrollingHazard : Patrolling, IDamager
 {
@@ -30,6 +29,6 @@ public class PatrollingHazard : Patrolling, IDamager
 
     public void DamageAction(Vector2 damagablePos, GameObject obj)
     {
-        Debug.Log("Damage Given");
+        //Debug.Log("Damage Given");
     }
 }

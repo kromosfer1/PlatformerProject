@@ -49,7 +49,7 @@ public class PlayerCollisionController : MonoBehaviour
         if (damager != null && collidable)
         {
             DamageTaken?.Invoke(damager.DamageValue);
-            Debug.Log($"{damager.DamageValue} damage taken");
+            //Debug.Log($"{damager.DamageValue} damage taken");
             StartCoroutine(CollisionControl());
         }
     }

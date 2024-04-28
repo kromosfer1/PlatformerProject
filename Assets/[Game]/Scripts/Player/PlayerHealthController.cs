@@ -75,15 +75,15 @@ public class PlayerHealthController : MonoBehaviour, IDamagable, IPlayerHealth
             _currentHealth = 0;
             CharacterEventHandler.OnCharacterDeath?.Invoke();
 
-            KillPlayerAction();
+            //KillPlayerAction();
 
         }
     }
 
-    private void KillPlayerAction()
-    {
-        Debug.Log($"Player Died");
-    }
+    //private void KillPlayerAction()
+    //{
+    //    Debug.Log($"Player Died");
+    //}
 
     private void Revive()
     {
