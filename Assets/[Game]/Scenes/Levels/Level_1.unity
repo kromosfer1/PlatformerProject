@@ -6458,7 +6458,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.007892609, y: 0.5319189}
+  m_Offset: {x: -0.0041828156, y: 0.5590877}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6469,7 +6469,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.7707863, y: 0.13417625}
+  m_Size: {x: 3.0002174, y: 0.18851388}
   m_EdgeRadius: 0
 --- !u!61 &792726495
 BoxCollider2D:
@@ -23319,19 +23319,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3187812947143806082, guid: 2161d1fff13b2e74cacb281575bdcc2b, type: 3}
       propertyPath: m_Size.x
-      value: 2.8465824
+      value: 3.0596123
       objectReference: {fileID: 0}
     - target: {fileID: 3187812947143806082, guid: 2161d1fff13b2e74cacb281575bdcc2b, type: 3}
       propertyPath: m_Size.y
-      value: 0.12912333
+      value: 0.17653048
       objectReference: {fileID: 0}
     - target: {fileID: 3187812947143806082, guid: 2161d1fff13b2e74cacb281575bdcc2b, type: 3}
       propertyPath: m_Offset.x
-      value: 0.00031375885
+      value: -0.0034866333
       objectReference: {fileID: 0}
     - target: {fileID: 3187812947143806082, guid: 2161d1fff13b2e74cacb281575bdcc2b, type: 3}
       propertyPath: m_Offset.y
-      value: 0.5293924
+      value: 0.553096
       objectReference: {fileID: 0}
     - target: {fileID: 7344399777114715051, guid: 2161d1fff13b2e74cacb281575bdcc2b, type: 3}
       propertyPath: m_Name
@@ -23612,6 +23612,22 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1628740506}
+    - target: {fileID: 1979478638688834753, guid: cbce4a7c673cf5a47977f1e6985088c1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979478638688834753, guid: cbce4a7c673cf5a47977f1e6985088c1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979478638688834753, guid: cbce4a7c673cf5a47977f1e6985088c1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979478638688834753, guid: cbce4a7c673cf5a47977f1e6985088c1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2506864593147407365, guid: cbce4a7c673cf5a47977f1e6985088c1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
